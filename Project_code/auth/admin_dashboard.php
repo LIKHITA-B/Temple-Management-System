@@ -43,6 +43,9 @@
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
+   background-image:url('back2.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .topnav {
@@ -65,7 +68,7 @@ body {
 }
 
 .topnav a.active {
-  background-color: #04AA6D;
+  background-color: #de572a;
   color: white;
 }
 .topnav-right {
@@ -73,13 +76,13 @@ body {
  margin:0 1.5%;
 }
 .container {
-    width: 275px;
-    max-width: 275px;
+    width: 320px;
+    max-width: 320px;
     margin: 1rem;
     padding: 2rem;
     box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
     border-radius: var(--border-radius);
-    background: #ffffff;
+    background: #e58723;
 }
 .main_container{
     width: 680px;
@@ -88,7 +91,7 @@ body {
     padding: 2rem;
     box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
     border-radius: var(--border-radius);
-    background: #ffffff;
+    background: #eba349;
 }
 .container_sub{
     width: 400px;
@@ -98,12 +101,12 @@ body {
     padding: 2rem;
     box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
     border-radius: var(--border-radius);
-    background: #ffffff;
+    background: #e58723;
     
 }
 
 .right {
-  background-color: #e5e5e5;
+  background-color: #eba349;
   float: right;
   width: 30%;
   padding: 15px;
@@ -118,7 +121,7 @@ body {
 footer {
   text-align: center;
   padding: 3px;
-  background-color: DarkSalmon;
+  background-color: #de572a;
   color: white;
 }
 .float-container {
@@ -154,8 +157,8 @@ footer {
     <a href="../Frontend/donation.php">Donations</a>
     <a href="../Frontend/education.php">Education</a>
     <a  href="../Frontend/contact.php">Contact</a>
-	<a  class="active" href="admin_dashboard.php">Registered Users</a>
-	 
+	<a  class="active" href="admin_dashboard.php">Users</a>
+	<a   href="../Frontend/Calender/index.php">Add Events</a>
     <div class="topnav-right">
 	 <a class="nav-link" href="#"><?php echo $_SESSION['fullname']; ?> <?php if($_SESSION['role'] == 'admin'){ echo "(Admin)"; } ?></a>
             
@@ -177,7 +180,7 @@ footer {
      
         <center>
 
-        <div class="container_sub">
+      
 		<h1>
 		
 		</h1>
@@ -212,7 +215,6 @@ footer {
 						?>
 						
     
-     </div>
   
 
         

@@ -26,6 +26,9 @@
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
+     background-image:url('back2.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .topnav {
@@ -48,7 +51,7 @@ body {
 }
 
 .topnav a.active {
-  background-color: #04AA6D;
+  background-color: #de572a;
   color: white;
 }
 .topnav-right {
@@ -56,13 +59,13 @@ body {
  margin:0 1.5%;
 }
 .container {
-    width: 275px;
-    max-width: 275px;
+    width: 320px;
+    max-width: 320px;
     margin: 1rem;
     padding: 2rem;
     box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
     border-radius: var(--border-radius);
-    background: #ffffff;
+    background: #e58723;
 }
 .main_container{
     width: 680px;
@@ -71,7 +74,7 @@ body {
     padding: 2rem;
     box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
     border-radius: var(--border-radius);
-    background: #ffffff;
+    background: #eba349;
 }
 .container_sub{
     width: 400px;
@@ -81,12 +84,12 @@ body {
     padding: 2rem;
     box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
     border-radius: var(--border-radius);
-    background: #ffffff;
+    background: #e58723;
     
 }
 
 .right {
-  background-color: #e5e5e5;
+  background-color: #eba349;
   float: right;
   width: 30%;
   padding: 15px;
@@ -101,7 +104,7 @@ body {
 footer {
   text-align: center;
   padding: 3px;
-  background-color: DarkSalmon;
+  background-color: #de572a;
   color: white;
 }
 .float-container {
@@ -120,8 +123,8 @@ footer {
 </head>
 <body>
     <div style="padding-left:16px">
-        <h1 align= "center" font-family="monospace">OMKAAR TEMPLE</h1>
-        <h4 align= "center" font-family="monospace">Hindu Temple of Fort Wayne</h2>
+        <h1 align= "center" font-family="Arial, Helvetica, sans-serif">OMKAAR TEMPLE</h1>
+        <h4 align= "center" font-family="Arial, Helvetica, sans-serif">Hindu Temple of Fort Wayne</h2>
       </div>
 
 

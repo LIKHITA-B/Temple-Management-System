@@ -29,10 +29,10 @@
 					header('Location: admin_dashboard.php');
 					exit;}
 					if ($_SESSION['role'] =="priest"){
-					header('Location: priest_dashboard.php');
+					header('Location: ../Frontend/Home.php');
 					exit;}
 					if ($_SESSION['role'] =="user"){
-					header('Location: user_dashboard.php');
+					header('Location: ../Frontend/Home.php');
 					exit;}
 				}
 				else
@@ -44,6 +44,20 @@
 		}
 	}
 ?>
+
+<html>
+<style>
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+    background-image:url('back2.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+</style>
+<body>
+
+
 
 <?php include '../include/header.php';?>
 	<!-- Services -->
@@ -68,24 +82,24 @@
 		<div class="container">
 			<div class="row">				
 			  <div class="col-md-4 mx-auto">
-			  	<div class="alert alert-info" role="alert">
+			  	<div class="alert alert-info" role="alert" style="background: #eba349;">
 			  		<?php
 						if(isset($errMsg)){
 							echo '<div style="color:#FF0000;text-align:center;font-size:17px;">'.$errMsg.'</div>';
 						}
 					?>
-			  		<h2 class="text-center">Login</h2>
+			  		<h2 class="text-center" style="color:#000000">Login</h2>
 				    <form action="" method="post">
 					  <div class="form-group">
-					    <label for="exampleInputEmail1">Email Address/User Name</label>
+					    <label for="exampleInputEmail1" style="color:#000000">Email Address/User Name</label>
 					    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Email" name="username" required>
 					  </div>
 					  <div class="form-group">
-					    <label for="exampleInputPassword1">Password</label>
+					    <label for="exampleInputPassword1" style="color:#000000">Password</label>
 					    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password" required>
 					  </div>
-					  <button type="submit" class="btn btn-primary" name='login' value="Login">Submit</button>
-					  <a  href="forgotpassword.php"><p> Forgot your password?</p></a>
+					  <button type="submit" class="btn btn-primary" name='login' style="background-color: #de572a;" value="Login">Submit</button>
+					  <a  href="forgot_password.php" style="color:#000000"><p> Forgot your password?</p></a>
 					  <br>
 					  
 					  
@@ -96,3 +110,8 @@
 		</div>
 	</section>
 <?php include '../include/footer.php';?>
+
+
+
+</body>
+</html>

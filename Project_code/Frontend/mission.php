@@ -42,6 +42,9 @@
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
+   background-image:url('back2.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .topnav {
@@ -64,7 +67,7 @@ body {
 }
 
 .topnav a.active {
-  background-color: #04AA6D;
+  background-color: #de572a;
   color: white;
 }
 .topnav-right {
@@ -72,13 +75,13 @@ body {
  margin:0 1.5%;
 }
 .container {
-    width: 275px;
-    max-width: 275px;
+    width: 320px;
+    max-width: 320px;
     margin: 1rem;
     padding: 2rem;
     box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
     border-radius: var(--border-radius);
-    background: #ffffff;
+    background: #e58723;
 }
 .main_container{
     width: 800px;
@@ -88,10 +91,10 @@ body {
 	
     box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
     border-radius: var(--border-radius);
-    background: #ffffff;
+    background: #eba349;
 }
 .right {
-  background-color: #e5e5e5;
+  background-color: #eba349;
   float: right;
   width: 30%;
   padding: 15px;
@@ -106,7 +109,7 @@ body {
 footer {
   text-align: center;
   padding: 3px;
-  background-color: DarkSalmon;
+  background-color:  #de572a;
   color: white;
 }
 </style>
@@ -121,7 +124,7 @@ footer {
     <a class="active" href="mission.php">Mission</a>
     <a  href="priest.php">Priest</a>
     <a  href="services.php">Services</a>
-    <a href="calender.php">Calender</a>
+    <a href="Calender/display_calender.php">Calender</a>
     <a href="gallery.php">Gallery</a>
     <a href="donation.php">Donations</a>
     <a  href="education.php">Education</a>
@@ -129,6 +132,7 @@ footer {
 	<?php if($_SESSION['role'] == 'admin'){ 
 	
 	 echo '<a  href="../auth/admin_dashboard.php">Registered Users</a>';
+	 echo '<a   href="Calender/index.php">Add Calender Events</a>';
 	      	 	} ?>
 					<?php if($_SESSION['role'] == 'priest'){ 
 	
@@ -140,6 +144,8 @@ footer {
 	 echo '<a    href="../auth/appointmentbooking.php">Book Appointment</a>';
 	      	 	} ?> 
     <div class="topnav-right">
+	<a class="nav-link" href="#"><?php echo $_SESSION['fullname']; ?> <?php if($_SESSION['role'] == 'admin'){ echo "(Admin)"; } ?></a>
+   
       <a  href="../auth/login.php">Logout</a>
   </div> 
  

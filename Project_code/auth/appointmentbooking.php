@@ -125,13 +125,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta charset="UTF-8">
 <link rel="shortcut icon" href="/assets/favicon.ico">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 <style>
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
+    background-image:url('back2.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .topnav {
@@ -154,7 +156,7 @@ body {
 }
 
 .topnav a.active {
-  background-color: #04AA6D;
+  background-color: #de572a;
   color: white;
 }
 .topnav-right {
@@ -162,38 +164,38 @@ body {
  margin:0 1.5%;
 }
 .container {
-    width: 305px;
-    max-width: 305px;
+    width: 320px;
+    max-width: 320px;
     margin: 1rem;
     padding: 2rem;
     box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
     border-radius: var(--border-radius);
-    background: #ffffff;
-	
+    background: #e58723;
 }
 .main_container{
-    width: 680px;
-    max-width: 680px;
+    width: 780px;
+    max-width: 780px;
     margin: 1rem;
     padding: 2rem;
     box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
     border-radius: var(--border-radius);
-    background: #ffffff;
+    background: #eba349;
+	
 }
 .container_sub{
-    width: 400px;
-    max-width: 400px;
+    width: 600px;
+    max-width: 600px;
     margin: 3rem;
     position:center;
     padding: 2rem;
     box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
     border-radius: var(--border-radius);
-    background: #ffffff;
+    background: #e58723;
     
 }
 
 .right {
-  background-color: #e5e5e5;
+  background-color: #eba349;
   float: right;
   width: 30%;
   padding: 15px;
@@ -208,7 +210,7 @@ body {
 footer {
   text-align: center;
   padding: 3px;
-  background-color: DarkSalmon;
+  background-color: #de572a;
   color: white;
 }
 .float-container {
@@ -223,28 +225,32 @@ footer {
 
 
 
+
+
+
+
 </style>
 </head>
 <body>
     <div style="padding-left:16px">
-        <h1 align= "center" font-family="monospace">OMKAAR TEMPLE</h1>
-        <h4 align= "center" font-family="monospace">Hindu Temple of Fort Wayne</h2>
+        <h1 align= "center" font-family="Arial, Helvetica, sans-serif">OMKAAR TEMPLE</h1>
+        <h4 align= "center" font-family="Arial, Helvetica, sans-serif">Hindu Temple of Fort Wayne</h2>
       </div>
 
 
 <div class="topnav">
 
 
-    <a class="active" href="../Frontend/home.php">Home</a>
+    <a  href="../Frontend/home.php">Home</a>
     <a  href="../Frontend/mission.php">Mission</a>
     <a href="../Frontend/priest.php">Priest</a>
     <a  href="../Frontend/services.php">Services</a>
-    <a href="../Frontend/calender.php">Calender</a>
+    <a href="../Frontend/display_calender.php">Calender</a>
     <a href="../Frontend/gallery.php">Gallery</a>
     <a href="../Frontend/donation.php">Donations</a>
     <a href="../Frontend/education.php">Education</a>
     <a  href="../Frontend/contact.php">Contact</a>
-	<a  href="../auth/appointmentbooking.php">Book Appointment</a>
+	<a class="active" href="../auth/appointmentbooking.php">Book Appointment</a>
     <div class="topnav-right">
 	 <a class="nav-link" href="#"><?php echo $_SESSION['fullname']; ?> <?php if($_SESSION['role'] == 'priest'){ echo "(priest)"; } ?></a>
             
@@ -260,96 +266,108 @@ footer {
  
 <div style="overflow:auto">
 
-<div class=" main">
+<div class=" main"  style="float:left">
     <div class="main_container">
    
      
 
-<?php include '../include/header.php';?>
 
+<center>
 
 <!-- <section> --><br>
-	<div class="container">
+	<div class="container" >
 		<div class="row">				
-			  <div class="col-md-8 mx-auto">
-			  	<div class="alert alert-info" role="alert">
+			  <div class="col-md-8 mx-auto" >
+			  	<div class="alert alert-info" role="alert" style="background: #eba349;">
 			  		<?php
 						if(isset($errMsg)){
 							echo '<div style="color:#FF0000;text-align:center;font-size:17px;">'.$errMsg.'</div>';
 						}
 					?>
-			  		<h2 class="text-center">Appointment</h2>
-				  	<form action="" method="post">
+					
+			  		<h2 class="text-center" style="color:#000000">Appointment</h2>
+				  	<form action="" method="post" align="justify" >
 				  		<div class="row">
 					  	    <div class="col-6">
 						  	  <div class="form-group">
-							    <label for="fullname">Full Name</label>
+							    <label for="fullname" style="color:#000000">Full Name</label>
+								<br>
 							    <input type="text" class="form-control" id="fullname" placeholder="Full Name" name="fullname" required>
 							  </div>
 							</div>
+							<br>
 							<div class="col-6">
 							  <div class="form-group">
-							    <label for="email">Email</label>
+							    <label for="email" style="color:#000000">Email</label>
+								<br>
 							    <input type="email" class="form-control" id="email" placeholder="email" name="email" required>
 							  </div>
 						    </div>
-					   </div>
+					   </div><br>
 					   <div class="row">
 					  	    <div class="col-6">
 							  <div class="form-group">
-							    <label for="mobile">Mobile</label>
+							    <label for="mobile" style="color:#000000">Mobile</label>
+								<br>
 							    <input type="text" class="form-control" pattern="^(\d{10})$" id="mobile" title="10 digit mobile number" placeholder="10 digit mobile number" name="mobile" required>
 							  </div>
 							 </div>
+							 
+							 <br>
 							<div class="col-6">					  
 							  <div class="form-group">
-							    <label for="services">services</label>
+							    <label for="services" style="color:#000000">services</label>
+								<br>
 							    <input type="text" class="form-control" id="services" placeholder="services" name="services" required>
 							  </div>
 							 </div>
-						</div>
+						</div><br>
 					   <div class="row">
 					  	    <div class="col-6">
 							  <div class="form-group">
-							    <label for="Date">Date and Time Preferred</label>
+							    <label for="Date" style="color:#000000">Date and Time </label>
+								<br>
 							    <input type="text" class="form-control" id="Date" title="Date" placeholder="Date" name="Date" required>
 							  </div>
-							 </div>
+							 </div><br>
 							<div class="col-6">					  
 							  <div class="form-group">
-							    <label for="Second">Second Preference</label>
+							    <label for="Second" style="color:#000000">Second Preference</label>
+								<br>
 							    <input type="text" class="form-control" id="Second" placeholder="Second" name="Second" required>
 							  </div>
 							 </div>
-						</div>
+						</div><br>
 					  <div class="row">
 					  	    <div class="col-6">
 							  <div class="form-group">
-							    <label for="Third">Third Preference</label>
+							    <label for="Third" style="color:#000000">Third Preference</label>
+								<br>
 							    <input type="text" class="form-control"  id="mobile" title="Third" placeholder="Third" name="Third" required>
 							  </div>
-							 </div>
+							 </div><br>
 							<div class="col-6">					  
 							  <div class="form-group">
-							    <label for="Additional">Additional Request</label>
+							    <label for="Additional" style="color:#000000">Additional Request</label>
+								<br>
 							    <input type="text" class="form-control" id="Additional" placeholder="Additional" name="Additional" required>
 							  </div>
 							 </div>
 						</div>
-
-					  <button type="submit" class="btn btn-primary" name='register' value="register">Submit</button>
+						<br>
+					  <button type="submit" class="btn btn-primary" name='register'  style="background-color: #de572a;" value="register">Submit</button>
 					</form>				
 				</div>
 			</div>
 		</div>
 	</div>
 <!-- </section> -->
-<?php include '../include/footer.php';?>
 
 
 
 
 
+</center>
 
 
 
@@ -360,8 +378,8 @@ footer {
 
 
 <!-- side conatiner-->
-<div class="right">
-  <div class="container">
+<div class="right" style="font-family: Arial, Helvetica, sans-serif;">
+  <div class="container" style="font-family: Arial, Helvetica, sans-serif;">
   <h2>Temple Hours</h2>
   <h3><b>Mon-Fri</b></h3>
   <h4>9:30am - 11:00am</h4>
@@ -375,7 +393,7 @@ footer {
 
   
   <form action="action_page.php">
-    <div class="container">
+    <div class="container" style="font-family: Arial, Helvetica, sans-serif;">
       <h2>Subscribe to our Newsletter</h2>
       <input type="text" placeholder="Name" name="name" required>
       <input type="text" placeholder="Email address" name="mail" required>

@@ -1,5 +1,5 @@
 <?php
-	require '../config/config.php';
+	require '../../config/config.php';
 	
 
 	if($_SESSION['role'] == 'admin'){
@@ -36,13 +36,100 @@
 <meta charset="UTF-8">
 <link rel="shortcut icon" href="/assets/favicon.ico">
 
+<link rel="stylesheet" href="fullcalendar/fullcalendar.min.css" />
+<script src="fullcalendar/lib/jquery.min.js"></script>
+<script src="fullcalendar/lib/moment.min.js"></script>
+<script src="fullcalendar/fullcalendar.min.js"></script>
+
+<script>
+
+$(document).ready(function () {
+    var calendar = $('#calendar').fullCalendar({
+        editable: true,
+        events: "fetch-event.php",
+        displayEventTime: false,
+        eventRender: function (event, element, view) {
+            if (event.allDay === 'true') {
+                event.allDay = true;
+            } else {
+                event.allDay = false;
+            }
+        },
+        selectable: true,
+        selectHelper: true,
+        select: function (start, end, allDay) {
+            //var title = prompt('Event Title with Timings');
+
+            if (title) {
+                var start = $.fullCalendar.formatDate(start, "Y-MM-DD HH:mm:ss");
+                var end = $.fullCalendar.formatDate(end, "Y-MM-DD HH:mm:ss");
+
+                $.ajax({
+                    //url: 'add-event.php',
+                    data: 'title=' + title + '&start=' + start + '&end=' + end,
+                    type: "POST",
+                    success: function (data) {
+                        displayMessage("Added Successfully");
+                    }
+                });
+                calendar.fullCalendar('renderEvent',
+                        {
+                            title: title,
+                            start: start,
+                            end: end,
+                            allDay: allDay
+                        },
+                true
+                        );
+            }
+            calendar.fullCalendar('unselect');
+        },
+        
+        editable: true,
+        eventDrop: function (event, delta) {
+                    var start = $.fullCalendar.formatDate(event.start, "Y-MM-DD HH:mm:ss");
+                    var end = $.fullCalendar.formatDate(event.end, "Y-MM-DD HH:mm:ss");
+                    $.ajax({
+                        //url: 'edit-event.php',
+                        data: 'title=' + event.title + '&start=' + start + '&end=' + end + '&id=' + event.id,
+                        type: "POST",
+                        success: function (response) {
+                            displayMessage("Updated Successfully");
+                        }
+                    });
+                },
+        eventClick: function (event) {
+            //var deleteMsg = confirm("Do you really want to delete?");
+            if (deleteMsg) {
+                $.ajax({
+                    type: "POST",
+                    //url: "delete-event.php",
+                    data: "&id=" + event.id,
+                    success: function (response) {
+                        if(parseInt(response) > 0) {
+                            $('#calendar').fullCalendar('removeEvents', event.id);
+                            displayMessage("Deleted Successfully");
+                        }
+                    }
+                });
+            }
+        }
+
+    });
+});
+
+function displayMessage(message) {
+	    $(".response").html("<div class='success'>"+message+"</div>");
+    setInterval(function() { $(".success").fadeOut(); }, 1000);
+}
+</script>
 
 
 <style>
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
-  background-image:url('back2.jpg');
+    background-image:url('back2.jpg');
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -110,34 +197,35 @@ footer {
         <h4 align= "center" font-family="monospace">Hindu Temple of Fort Wayne</h2>
       </div>
 <div class="topnav">
-  <a  class="active" href="home.php">Home</a>
-    <a  href="mission.php">Mission</a>
-    <a  href="priest.php">Priest</a>
-    <a  href="services.php">Services</a>
-    <a href="calender.php">Calender</a>
-    <a href="gallery.php">Gallery</a>
-    <a href="donation.php">Donations</a>
-    <a  href="education.php">Education</a>
-    <a  href="contact.php">Contact</a>
+  <a   href="../home.php">Home</a>
+    <a  href="../mission.php">Mission</a>
+    <a  href="../priest.php">Priest</a>
+    <a  href="../services.php">Services</a>
+    <a class="active" href="../display_calender.php">Calender</a>
+    <a href="../gallery.php">Gallery</a>
+    <a href="../donation.php">Donations</a>
+    <a  href="../education.php">Education</a>
+    <a  href="../contact.php">Contact</a>
 	<?php if($_SESSION['role'] == 'admin'){ 
 	
-	 echo '<a  href="Register_user.php">Registered Users</a>';
-	  echo '<a   href="Calender/index.php">Add Calender Events</a>';
+	 echo '<a  href="../../app/registered_users.php">Registered Users</a>';
+	  echo '<a   href="index.php">Add Calender Events</a>';
 	
 	      	 	} ?>  
 	<?php if($_SESSION['role'] == 'priest'){ 
 	
-	 echo '<a  href="../app/priest_sms.php">Send sms</a>';
-	 echo'<a  href="../app/Upload_Image.php">Upload Images</a>';
+	 echo '<a  href="../../app/priest_sms.php">Send sms</a>';
+	 echo '<a  href="../../app/Upload_Image.php">Upload Images</a>';
 	      	 	} ?> 
 				<?php if($_SESSION['role'] == 'user'){ 
 	
-	 echo '<a  href="../auth/appointmentbooking.php">Book Appointment</a>';
+	 echo '<a  href="../../auth/appointmentbooking.php">Book Appointment</a>';
 	      	 	} ?> 
     <div class="topnav-right">
 	<a class="nav-link" href="#"><?php echo $_SESSION['fullname']; ?> <?php if($_SESSION['role'] == 'admin'){ echo "(Admin)"; } ?></a>
+     
    
-      <a  href="../auth/login.php">Logout</a>
+      <a  href="../../auth/login.php">Logout</a>
   </div> 
  
 </div>
@@ -145,10 +233,12 @@ footer {
 <br>
 <div style="overflow:auto">
 <div class="main">
-   <h1>About</h1>
-   <p align="justify">Fort Wayne is very fortunate to have the first Hindu temple in North America being named after the mantra Aum, the Omkaar Temple. The temple is currently in the early stages of development and will be constructed in Fort Wayne, IN under the guidance and blessings of Poojya Guruji Shivacharya Sri Kumaraswamy Dixitar. The temple’s primary deity will be the Pancha Mukha Shiva Linga. Pancha Mukha Shiva Linga has a powerful symbolism, a reflection of a great reality that encompasses all deities. This supreme form represents the Universe and all its creation, its life and itself as a whole in all directions. Along with Pancha Mukha Shiva Linga the other deities who will adorn this temple are: Parvathy (Ambaal), Ganapathi, Murugan, Balaji (Perumal), Padmavathi, Lakshmi, Sriram Parivar, Hanuman, Krishna, Radha, and the Nava Grahas. The Yantras, made in pure gold, for all these deities have been made to strictly adhere to the guidelines set forth in the Shaastras and have been blessed by spiritual leaders like Bhagwan Sri Sathya Sai Baba, Acharyas of Sringeri, Kanchi Mutts in India as well as religious leaders from holy places like Manasarovar, Kathmandu and Nepal.</p>
-<br><br>
-<img src="img1.jpg" width="800px" height="700px"></img>
+  <body>
+    <h2>Temple Events</h2>
+
+    <div class="response"></div>
+    <div id='calendar'></div>
+</body>
 </div>
 
 <div class="right">
@@ -212,3 +302,19 @@ footer {
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

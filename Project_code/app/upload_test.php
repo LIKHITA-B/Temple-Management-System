@@ -2,7 +2,8 @@
 	require '../config/config.php';
 	
 
-	if($_SESSION['role'] == 'admin'){
+	
+	if($_SESSION['role'] == 'priest'){
 		$stmt = $connect->prepare('SELECT count(*) as register_user FROM users');
 		$stmt->execute();
 		$count = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -28,8 +29,60 @@
 		':user_id' => $_SESSION['id']
 		));
 	$total_auth_user_rent_ap = $stmt->fetch(PDO::FETCH_ASSOC);
+
+
+if(isset($_POST['register_apartment'])) {
+			$errMsg = '';
+			// Get data from FROM
+			
+			$image = $_FILES['image']['name'];
+			//$other = $_POST['other'];	
+
+			//upload an images
+			$target_file = "";
+			if (isset($image)) {
+				# code...
+				$target_file = "uploads/".basename($_FILES["image"]["name"]);
+				$uploadOk = 1;
+				$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+				// Check if image file is a actual image or fake image
+			    //$check = getimagesize($_FILES["image"]["tmp_name"]);			
+			    //if($check !== false) {
+			    	move_uploaded_file($_FILES["image"]["tmp_name"], "uploads/" . $_FILES["image"]["name"]);
+			        $uploadOk = 1;
+			   // } else {
+			       // echo "File is not an image.";
+			        //$uploadOk = 0;
+			   // }
+			}			
+			//end of image upload		
+			
+			try {
+				$stmt = $connect->prepare('INSERT INTO upload_image (image) VALUES (:image)');
+				
+				
+					# code...					
+					$stmt->execute(array(
+
+						':image' => $target_file,
+						
+					));
+								
+				header('Location: Upload_Image.php?action=reg');
+				exit;
+			}catch(PDOException $e) {
+				echo $e->getMessage();
+			}
+	}
+
+	if(isset($_GET['action']) && $_GET['action'] == 'reg') {
+		$errMsg = 'Image Uploaded successfull. Thank you';
+	}
 ?>
-<!DOCTYPE html>
+
+
+
+	
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -41,8 +94,8 @@
 <style>
 body {
   margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-    background-image:url('back2.jpg');
+
+     background-image:url('back2.jpg');
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -84,25 +137,15 @@ body {
     background: #e58723;
 }
 .main_container{
-    width: 680px;
-    max-width: 680px;
+    width: 800px;
+    max-width: 800px;
     margin: 1rem;
     padding: 2rem;
     box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
     border-radius: var(--border-radius);
     background: #eba349;
 }
-.container_sub{
-    width: 400px;
-    max-width: 400px;
-    margin: 3rem;
-    position:center;
-    padding: 2rem;
-    box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
-    border-radius: var(--border-radius);
-    background: #e58723;
-    
-}
+
 
 .right {
   background-color: #eba349;
@@ -137,102 +180,103 @@ footer {
 
 </style>
 </head>
-<body>
+<body font-family="sans-serif">
     <div style="padding-left:16px">
-        <h1 align= "center" font-family="monospace">OMKAAR TEMPLE</h1>
-        <h4 align= "center" font-family="monospace">Hindu Temple of Fort Wayne</h2>
+        <h1 align= "center" >OMKAAR TEMPLE</h1>
+        <h4 align= "center" >Hindu Temple of Fort Wayne</h2>
       </div>
 
 
-<div class="topnav">
+<div class="topnav" font-family=" Arial, Helvetica, sans-serif">
 
 
- <a  href="home.php">Home</a>
-    <a  href="mission.php">Mission</a>
-    <a  href="priest.php">Priest</a>
-    <a  href="services.php">Services</a>
-    <a href="Calender/display_calender.php">Calender</a>
-    <a href="gallery.php">Gallery</a>
-    <a href="donation.php">Donations</a>
-    <a href="education.php">Education</a>
-    <a class="active" href="contact.php">Contact</a>
-	<?php if($_SESSION['role'] == 'admin'){ 
-	
-	 echo '<a  href="../auth/admin_dashboard.php">Registered Users</a>';
-	 echo '<a   href="Calender/index.php">Add Calender Events</a>';
-	      	 	} ?>
-					<?php if($_SESSION['role'] == 'priest'){ 
-	
-	 echo '<a  href="../app/priest_sms.php">Send sms</a>';
-	   echo '<a  href="../app/Upload_Image.php">Upload Images</a>';
-	      	 	} ?> 
-				<?php if($_SESSION['role'] == 'user'){ 
-	
-	 echo '<a  href="../auth/appointmentbooking.php">Book Appointment</a>';
-	      	 	} ?> 
+     <a   href="../Frontend/home.php">Home</a>
+    <a  href="../Frontend/mission.php">Mission</a>
+    <a  href="../Frontend/priest.php">Priest</a>
+    <a  href="../Frontend/services.php">Services</a>
+    <a href="../Frontend/calender/display_calender.php">Calender</a>
+    <a href="../Frontend/gallery.php">Gallery</a>
+    <a href="../Frontend/donation.php">Donations</a>
+    <a  href="../Frontend/education.php">Education</a>
+    <a  href="../Frontend/contact.php">Contact</a>
+	<a class="active" href="../app/priest_sms.php">Send sms</a>
+	<a  href="../app/Upload_Image.php">Upload Images</a>
     <div class="topnav-right">
-	<a class="nav-link" href="#"><?php echo $_SESSION['fullname']; ?> <?php if($_SESSION['role'] == 'admin'){ echo "(Admin)"; } ?></a>
-     
+	 <a class="nav-link" href="#"><?php echo $_SESSION['fullname']; ?> <?php if($_SESSION['role'] == 'admin'){ echo "(Admin)"; } ?></a>
+            
       <a  href="../auth/login.php">Logout</a>
-  </div> 
+    </div> 
+	
  
 </div>
 
 <br>
-
+<?php?>
 <!-- main part of the code-->
-
+ 
 <div style="overflow:auto">
 
 <div class=" main">
     <div class="main_container">
    
+     
     
-        <center>
-
-        <div class="container_sub">
-            <center><h2>Temple Address</h2>
-            <i class="material-icons" style="font-size:64px">pin_drop</i>
-            <h4>Omkaar Temple 14745 Yellow River Road, Fort Wayne, IN 46818</h4>
-            <h4><a href="https://www.google.com/maps/place/Omkaar+Temple/@41.117634,-85.333675,17z/data=!3m1!4b1!4m6!3m5!1s0x8815de98058d4389:0xbacc97d8d7f4dbaa!8m2!3d41.117634!4d-85.333675!16s%2Fg%2F1q5bm99pl">Open in Google Maps</a></h4>
-            <h4><a href="https://maps.apple.com/?address=14745%20Yellow%20River%20Rd,%20Fort%20Wayne,%20IN%20%2046818,%20United%20States&auid=18339372791188327544&ll=41.115716,-85.333863&lsp=9902&q=Omkaar%20Temple&_ext=CjIKBQgEEOIBCgQIBRADCgQIBhB9CgQIChAACgQIUhAHCgQIVRAQCgQIWRAGCgUIpAEQARImKbOk7Zo8jkRAMY0arbG/VVXAOTF6E/dij0RAQbOQ1VX8VFXAUAM%3D">Open in Apple Maps</a></h4>
-        
-    
-        <br>
-        <p ><h3>Directions to Temple from I-69:</h3>
-            1. On I-69 take Exit 109B<br>
-            2. Continue on US-30 W for 7.5 mi<br>
-            3. Turn left onto W County Line Road, sign reads CO LINE RD. (look for Marathon Gas Station on Left) - 0.6 mi<br>
-            4. Turn left onto Yellow River Rd - 0.2 mi<br>
-            5. Temple is on the right, follow gravel drive.</p>
-          </div>
-
-    <div class="container_sub">
-    <center><i class="fa fa-envelope"  style="font-size:64px"></i>
-    <p><a href="mailto: contact@omkaartemple.org">Click to send email</a></p></center>
-    </div>
-
-    <div class="container_sub">
-        <center><i class="fa fa-phone"  style="font-size:64px"></i>
-            <p>Phone</p>
-        <p>260-623-0001</p></center>
-        </div>
 
         
-
-    </center>
-
+<?php include '../include/header.php';?>
 
 
+ <div class="col-md-11 col-xs-12 col-sm-12"><br>  	
+  	<div class="alert alert-info" role="alert" >
+  		<?php
+			if(isset($errMsg)){
+				echo '<div style="color:#FF0000;text-align:center;font-size:17px;">'.$errMsg.'</div>';
+			}
+		?>
+  		<h2 class="text-center">Upload Image</h2>
+  		<form action="" method="post" enctype="multipart/form-data">
+		  	 <div class="row">
+		  	 	
+
+			
+
+			<div class="row">
+				<div class="col-md-4">
+				  <div class="form-group">
+				    <label for="description">Image</label>
+				    <input type="file" name="image" id="image">
+				  </div>
+				</div>
+			</div>
+
+
+			 <button type="submit" class="btn btn-primary" name='register_apartment' value="register_apartment">Submit</button>
+			</form>	
+		</div>			
+  	</div>
+</div>
 
 
 
 
 
+
+
+		
+               
 
 
 
 </div>
+
+
+
+
+
+
+
+
+
 </div>
 
 
@@ -289,3 +333,24 @@ footer {
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+<?php include '../include/footer.php';?>
+<script type="text/javascript">
+
+	$('#selectAll').click(function(){
+		console.log("Welcome to sms alert"+$(this).prop("checked"));	
+		$("input:checkbox").prop('checked', $(this).prop("checked"));	
+		//alert("Confirm Before sending SMS");
+		//event.preventDefault();	
+	});
+	
+	
+</script>

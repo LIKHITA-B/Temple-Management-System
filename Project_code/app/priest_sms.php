@@ -46,6 +46,9 @@
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
+     background-image:url('back2.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .topnav {
@@ -68,7 +71,7 @@ body {
 }
 
 .topnav a.active {
-  background-color: #04AA6D;
+  background-color: #de572a;
   color: white;
 }
 .topnav-right {
@@ -76,37 +79,27 @@ body {
  margin:0 1.5%;
 }
 .container {
-    width: 275px;
-    max-width: 275px;
+    width: 320px;
+    max-width: 320px;
     margin: 1rem;
     padding: 2rem;
     box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
     border-radius: var(--border-radius);
-    background: #ffffff;
+    background: #e58723;
 }
 .main_container{
-    width: 750px;
-    max-width: 750px;
+    width: 800px;
+    max-width: 800px;
     margin: 1rem;
     padding: 2rem;
     box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
     border-radius: var(--border-radius);
-    background: #ffffff;
-}
-.container_sub{
-    width: 400px;
-    max-width: 400px;
-    margin: 3rem;
-    position:center;
-    padding: 2rem;
-    box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
-    border-radius: var(--border-radius);
-    background: #ffffff;
-    
+    background: #eba349;
 }
 
+
 .right {
-  background-color: #e5e5e5;
+  background-color: #eba349;
   float: right;
   width: 30%;
   padding: 15px;
@@ -121,14 +114,68 @@ body {
 footer {
   text-align: center;
   padding: 3px;
-  background-color: DarkSalmon;
+  background-color: #de572a;
   color: white;
 }
 .float-container {
     border: 3px solid #fff;
     padding: 20px;
 }
+.popup {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
 
+/* The actual popup */
+.popup .popuptext {
+  visibility: hidden;
+  width: 160px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -80px;
+}
+
+/* Popup arrow */
+.popup .popuptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+/* Toggle this class - hide and show the popup */
+.popup .show {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity:1 ;}
+}
 
 
 
@@ -190,7 +237,7 @@ footer {
 				<h2>List Of Users</h2>
 				<div class="table-responsive text-center">
 					<form action="" method="post">
-						<table class="table table-bordered" style="width:100%" border="1px solid black" >
+						<table class="table table-bordered" style="width:80%" border="1px solid black" >
 						  <thead>
 						    <tr>
 						      <th><input type="checkbox" name="" id="selectAll"></th>
@@ -234,7 +281,15 @@ footer {
 						<input type="textarea" style="font-size:20pt;" name="message" class="form-control" placeholder="Enter Message(Message Body)" required>
 						<br>
 						<br>
-						<button type="submit" class="btn btn-success" name='sms_alert' value="sms_alert">Send SMS</button>
+					   <div class="popup" onclick="myFunction()">Send SMS
+						  <span class="popuptext" id="myPopup">Sms Sent Successfully!</span></div>
+						
+						<script>
+						function myFunction(){
+							var popup=document.getElementById("myPopup");
+							popup.classList.toggle("show");
+						}
+						</script>
 					</form>
 				</div>
 			

@@ -66,7 +66,17 @@
 		$errMsg = 'Registration successfull. Now you can login';
 	}
 ?>
-
+<html>
+<style>
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+    background-image:url('back2.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+</style>
+<body>
 <?php include '../include/header.php';?>
 	<!-- <nav class="navbar navbar-inverse">
 	  <div class="container-fluid">
@@ -99,24 +109,24 @@
 	<div class="container">
 		<div class="row">				
 			  <div class="col-md-8 mx-auto">
-			  	<div class="alert alert-info" role="alert">
+			  	<div class="alert alert-info" role="alert" style="background: #eba349;">
 			  		<?php
 						if(isset($errMsg)){
 							echo '<div style="color:#FF0000;text-align:center;font-size:17px;">'.$errMsg.'</div>';
 						}
 					?>
-			  		<h2 class="text-center">Register</h2>
+			  		<h2 class="text-center" style="color:#000000">Register</h2>
 				  	<form action="" method="post">
 				  		<div class="row">
 					  	    <div class="col-6">
 						  	  <div class="form-group">
-							    <label for="fullname">Full Name</label>
+							    <label for="fullname" style="color:#000000">Full Name</label>
 							    <input type="text" class="form-control" id="fullname" placeholder="Full Name" name="fullname" required>
 							  </div>
 							</div>
 							<div class="col-6">
 							  <div class="form-group">
-							    <label for="username">User Name</label>
+							    <label for="username" style="color:#000000">User Name</label>
 							    <input type="text" class="form-control" id="username" placeholder="User Name" name="username" required>
 							  </div>
 						    </div>
@@ -124,29 +134,29 @@
 					   <div class="row">
 					  	    <div class="col-6">
 							  <div class="form-group">
-							    <label for="mobile">Mobile</label>
+							    <label for="mobile" style="color:#000000">Mobile</label>
 							    <input type="text" class="form-control" pattern="^(\d{10})$" id="mobile" title="10 digit mobile number" placeholder="10 digit mobile number" name="mobile" required>
 							  </div>
 							 </div>
 							<div class="col-6">					  
 							  <div class="form-group">
-							    <label for="email">Email</label>
+							    <label for="email" style="color:#000000">Email</label>
 							    <input type="email" class="form-control" id="email" placeholder="Email" name="email" required>
 							  </div>
 							 </div>
 						</div>
 
 					  <div class="form-group">
-					    <label for="password">Password</label>
+					    <label for="password" style="color:#000000">Password</label>
 					    <input type="password" class="form-control" id="password" placeholder="Password" name="password" required>
 					  </div>
 
 					  <div class="form-group">
-					    <label for="c_password">Confirm Password</label>
+					    <label for="c_password" style="color:#000000">Confirm Password</label>
 					    <input type="password" class="form-control" id="c_password" placeholder="Confirm Password" name="c_password" required>
 					  </div>
 
-					  <button type="submit" class="btn btn-primary" name='register' value="register">Submit</button>
+					  <button type="submit" class="btn btn-primary" name='register' style="background-color: #de572a;" value="register">Submit</button>
 					</form>				
 				</div>
 			</div>
@@ -154,3 +164,8 @@
 	</div>
 <!-- </section> -->
 <?php include '../include/footer.php';?>
+
+
+
+</body>
+</html>

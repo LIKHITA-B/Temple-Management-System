@@ -167,6 +167,8 @@ footer {
 	 echo '<a  href="../auth/appointmentbooking.php">Book Appointment</a>';
 	      	 	} ?> 
     <div class="topnav-right">
+	<a class="nav-link" href="#"><?php echo $_SESSION['fullname']; ?> <?php if($_SESSION['role'] == 'admin'){ echo "(Admin)"; } ?></a>
+   
       <a  href="../auth/login.php">Logout</a>
   </div> 
  

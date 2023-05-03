@@ -93,9 +93,13 @@ if(isset($_POST['register_apartment'])) {
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 <style>
+
 body {
   margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
+font-family: Arial, Helvetica, sans-serif;
+     background-image:url('back2.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .topnav {
@@ -107,7 +111,7 @@ body {
   float: left;
   color: #f2f2f2;
   text-align: center;
-  padding: 10px 10px;
+  padding: 7px 7px;
   text-decoration: none;
   font-size: 17px;
 }
@@ -118,31 +122,41 @@ body {
 }
 
 .topnav a.active {
-  background-color: #04AA6D;
+  background-color: #de572a;
   color: white;
 }
 .topnav-right {
   float: right;
  margin:0 1.5%;
 }
+.container_sub{
+    width: 600px;
+    max-width: 600px;
+    margin: 3rem;
+    position:center;
+    padding: 2rem;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
+    border-radius: var(--border-radius);
+    background: #e58723;
+    
+}
 .container {
-    width: 305px;
-    max-width: 305px;
+    width: 320px;
+    max-width: 320px;
     margin: 1rem;
     padding: 2rem;
     box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
     border-radius: var(--border-radius);
-    background: #ffffff;
-	
+    background: #e58723;
 }
 .main_container{
-    width: 680px;
-    max-width: 680px;
+    width: 700px;
+    max-width: 700px;
     margin: 1rem;
     padding: 2rem;
     box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
     border-radius: var(--border-radius);
-    background: #ffffff;
+    background: #eba349;
 }
 .container_sub{
     width: 400px;
@@ -152,12 +166,12 @@ body {
     padding: 2rem;
     box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
     border-radius: var(--border-radius);
-    background: #ffffff;
+    background: #e58723;
     
 }
 
 .right {
-  background-color: #e5e5e5;
+  background-color: #eba349;
   float: right;
   width: 30%;
   padding: 15px;
@@ -172,7 +186,7 @@ body {
 footer {
   text-align: center;
   padding: 3px;
-  background-color: DarkSalmon;
+  background-color: #de572a;
   color: white;
 }
 .float-container {
@@ -180,19 +194,12 @@ footer {
     padding: 20px;
 }
 
-
-
-
-
-
-
-
 </style>
 </head>
 <body>
     <div style="padding-left:16px">
-        <h1 align= "center" font-family="monospace">OMKAAR TEMPLE</h1>
-        <h4 align= "center" font-family="monospace">Hindu Temple of Fort Wayne</h2>
+        <h1 align= "center" font-family= " Arial, Helvetica, sans-serif">OMKAAR TEMPLE</h1>
+        <h4 align= "center" font-family= " Arial, Helvetica, sans-serif">Hindu Temple of Fort Wayne</h2>
       </div>
 
 
@@ -230,17 +237,19 @@ footer {
    
      
 
-<?php include '../include/header.php';?>
+
 
 
  <div class="col-md-11 col-xs-12 col-sm-12"><br>  	
-  	<div class="alert alert-info" role="alert">
+  	<div class="alert alert-info" role="alert" styl="float:"right";">
   		<?php
 			if(isset($errMsg)){
 				echo '<div style="color:#FF0000;text-align:center;font-size:17px;">'.$errMsg.'</div>';
 			}
 		?>
-  		<h2 class="text-center">Upload Image</h2>
+		<div class="container_sub">
+  		<center><h2 class="text-center">Upload Image</h2></center>
+		<br>
   		<form action="" method="post" enctype="multipart/form-data">
 		  	 <div class="row">
 		  	 	
@@ -256,11 +265,13 @@ footer {
 				</div>
 			</div>
 
+<br>
 
-			 <button type="submit" class="btn btn-primary" name='register_apartment' value="register_apartment">Submit</button>
+			 <center><button type="submit" class="btn btn-primary" name='register_apartment' style="background-color: #de572a;" value="register_apartment">Submit</button></center>
 			</form>	
 		</div>			
   	</div>
+	</div>
 </div>
 
 
